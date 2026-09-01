@@ -58,7 +58,7 @@ class VAE(nn.Module):
         return reconstruction, mu, logvar
 
     @torch.no_grad()
-    def sample(self, num_samples, device=None, noise=None): # noise = z
+    def sample(self, num_samples, device=None, noise=None,progress=False): # noise = z
         if noise is None:
             if device is None:
                 device = next(self.parameters()).device
