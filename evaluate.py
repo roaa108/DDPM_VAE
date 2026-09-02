@@ -200,7 +200,7 @@ def main():
         timing_samples = 1000
     else:
         from models.DDPM import DDPM, UNet
-        model = DDPM(UNet(base_channels=64), timesteps=1000).to(device)
+        model = DDPM(UNet(base_channels=128), timesteps=1000).to(device)
         default_ckpt, state_key = "checkpoints/ddpm/latest.pt", "ema_state_dict"
         timing_samples = 100        # كل صورة = 1000 مرور على الشبكة
 
