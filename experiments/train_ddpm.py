@@ -10,13 +10,13 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 train_loader, validation_loader,test_loader = cifar_dataloader(
     data_root='./data', 
-    batch_size=8,
+    batch_size=128,
     validation_size=5000,
-    num_workers=0
+    num_workers=2
 )
 network = UNet(
     in_channels=3, 
-    base_channels=64, 
+    base_channels=128, 
     time_dim=256
     )
 ddpm = DDPM(
@@ -56,7 +56,7 @@ def save_progress(epoch, model):
 history = trainer.train(
     train_loader=train_loader,
     validation_loader=validation_loader,
-    epochs=1,
+    epochs=400,
     checkpoint_dir="checkpoints/ddpm",
     sample_callback=save_progress,
     resume_from="checkpoints/ddpm/latest.pt",  
